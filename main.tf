@@ -59,7 +59,7 @@ resource "aws_cloudfront_distribution" "test_website" {
   enabled = true
 
   origin {
-    domain_name = "https://api-connect.sbx.supertab.co"
+    domain_name = "api-connect.sbx.supertab.co"
     origin_id   = var.supertab_connect_origin_id
 
     custom_origin_config {
