@@ -70,6 +70,20 @@ resource "aws_cloudfront_distribution" "test_website" {
     }
   }
 
+  default_cache_behavior {
+    target_origin_id       = var.supertab_connect_origin_id
+    viewer_protocol_policy = "redirect-to-https"
+
+    allowed_methods = ["GET", "HEAD", "OPTIONS"]
+    cached_methods  = ["GET", "HEAD"]
+
+    # This uses the "Managed-CachingOptimized" policy (AWS's recommended default)
+    # This replaces the old "forwarded_values" block for a cleaner config
+    cache_policy_id = "65832739-aa87-4487-b861-1c10755df6b1"
+
+    compress = true
+  }
+
   # Cache behavior with precedence 0
   ordered_cache_behavior {
     path_pattern     = "/license.xml"
