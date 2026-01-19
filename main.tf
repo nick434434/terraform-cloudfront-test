@@ -50,13 +50,10 @@ variable "supertab_connect_origin_id" {
   default = "supertab-connect-origin"
 }
 
-variable "supertab_rewrite_license_path_function_arn" {
-  type = string
-  default = "arn:aws:cloudfront::637423387169:function/supertab-rewrite-license-path"
-}
-
 resource "aws_cloudfront_distribution" "test_website" {
   enabled = true
+
+  depends_on = [aws_cloudfront_function.supertab_rewrite_license_path_function]
 
   origin {
     domain_name = "api-connect.sbx.supertab.co"
@@ -102,7 +99,7 @@ resource "aws_cloudfront_distribution" "test_website" {
 
     function_association {
       event_type   = "viewer-request"
-      function_arn = var.supertab_rewrite_license_path_function_arn
+      function_arn = aws_cloudfront_function.supertab_rewrite_license_path_function.arn
     }
 
     min_ttl                = 0
