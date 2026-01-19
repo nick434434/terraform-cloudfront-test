@@ -79,7 +79,7 @@ resource "aws_cloudfront_distribution" "test_website" {
 
     # This uses the "Managed-CachingOptimized" policy (AWS's recommended default)
     # This replaces the old "forwarded_values" block for a cleaner config
-    cache_policy_id = "65832739-aa87-4487-b861-1c10755df6b1"
+    cache_policy_id = "658327ea-f89d-4fab-a63d-7e88639e58f6"
 
     compress = true
   }
