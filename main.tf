@@ -23,9 +23,9 @@ variable "supertab_rewrite_license_path_function_name" {
   default = "supertab-rewrite-license-path"
 }
 
-data "aws_cloudfront_function" "supertab_rewrite_license_path_function" {
+resource "aws_cloudfront_function" "supertab_rewrite_license_path_function" {
   name    = var.supertab_rewrite_license_path_function_name
-  stage   = "DEVELOPMENT"
+  publish = true
   comment = "Rewrites /license.xml to supertab-connect path"
 
   runtime = "cloudfront-js-2.0"
