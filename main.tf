@@ -116,4 +116,11 @@ resource "aws_cloudfront_distribution" "test_website" {
   viewer_certificate {
     cloudfront_default_certificate = true
   }
+
+  lifecycle {
+    ignore_changes = [
+      origin,
+      ordered_cache_behavior
+    ]
+  }
 }
